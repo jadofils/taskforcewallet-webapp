@@ -2,11 +2,12 @@
   "name": "wallet",
   "version": "1.0.0",
   "main": "app.js",
- "scripts": {
-  "build": "echo 'No build step required'",
-  "start": "node app.js",
-  "dev": "node app.js"
-},
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "start": "node app.js",
+    "dev": "node app.js",
+    "postinstall": "npm install"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
