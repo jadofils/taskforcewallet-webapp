@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const userRoutes = require('./src/routes/userRoutes');
-const connectDB = require('./src/config/db'); // Correct path
+const userRoutes = require('./backend/routes/userRoutes');
+const connectDB = require('./backend/config/db'); // Correct path
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public'))); // Adjusted path
 // Routes
 app.use('/api/users', userRoutes);
 
-// Route for the home page
+// Route for ge
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html')); // Adjusted path
 });
