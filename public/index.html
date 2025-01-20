@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Management System</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+      html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px; /* Adjust this value based on your navbar height */
+        }
+
+        /* Ensure sections have proper spacing and padding */
+        section {
+            padding-top: 20px; /* Add some padding to prevent content from being hidden under navbar */
+        }
+
+        /* Optional: Add active state for nav links */
+        .nav-links .active {
+            color: #ff7200;
+        }
+</style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="./images/logo.jpeg" alt="Logo"> 
+        </div>
+        <ul class="nav-links">
+            <li><a href="#top">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#service">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#register" class="btn">Register</a></li>
+            <li><a href="#login" class="btn">Login</a></li>
+        </ul>
+    </nav>
+
+
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Our Wallet Management System</h1>
+            <p>Effortlessly manage your finances with our intuitive and secure platform.</p>
+            <a href="#" id="get-start-register" class="btn">Get Started</a>
+        </div>
+    </section>
+<!-- Combined auth section -->
+<section id="auth-section" class="auth-section">
+    <div class="container">
+        <div class="auth-forms">
+            <div class="auth-form-container" id="register">
+                <h2>Create Account</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <input type="text" name="firstname" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="lastname" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="confirmPassword" placeholder="Confirm Password">
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Register</button>
+                </form>
+                <div class="auth-link">
+                    <p>Already have an account? <a href="#" class="switch-form" data-form="login">Login</a></p>
+                </div>
+            </div>
+
+            <div class="auth-form-container" id="login">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Login</button>
+                </form>
+                <div class="auth-link">
+                    <p>Don't have an account? <a href="#" class="switch-form" data-form="register">Register</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>
+                Our Wallet Management System is a comprehensive solution designed to simplify how you manage your finances. Whether you're tracking daily expenses, managing multiple currencies, or securely storing payment information, our platform provides a seamless and secure experience.
+            </p>
+            <p>
+                With features like real-time transaction tracking, multi-currency support, bill payments, and secure storage for payment cards and digital assets, our system ensures your financial data is always at your fingertips. Powered by advanced encryption and intuitive design, we prioritize your convenience and security.
+            </p>
+            <p>
+                Join thousands of users who trust us to handle their financial needs with efficiency and ease. Explore the future of wallet management and take control of your finances today.
+            </p>
+        </div>
+    </section>
+    <section class="services" id="service">
+      <div class="container">
+          <h2>Our Services</h2>
+          <div class="service-cards">
+              <div class="card">
+                  <i class="fas fa-wallet"></i>
+                  <h3>Wallet Management</h3>
+                  <p>Efficiently manage your accounts, transactions, and finances in one place.</p>
+              </div>
+              <div class="card">
+                  <i class="fas fa-chart-line"></i>
+                  <h3>Budget Tracking</h3>
+                  <p>Set budgets and monitor your expenses to achieve your financial goals.</p>
+              </div>
+              <div class="card">
+                  <i class="fas fa-file-alt"></i>
+                  <h3>Detailed Reports</h3>
+                  <p>Generate comprehensive reports to analyze your spending habits.</p>
+              </div>
+              <div class="card">
+                  <i class="fas fa-layer-group"></i>
+                  <h3>Category Management</h3>
+                  <p>Organize your income and expenses with custom categories and subcategories.</p>
+              </div>
+              <div class="card">
+                  <i class="fas fa-shield-alt"></i>
+                  <h3>Secure Access</h3>
+                  <p>Keep your data safe with advanced security measures and encryption.</p>
+              </div>
+              <div class="card">
+                  <i class="fas fa-bell"></i>
+                  <h3>Notifications</h3>
+                  <p>Receive timely alerts and reminders for upcoming due dates and limits.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+  
+  
+
+  <section class="testimonials">
+    <div class="container">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-card">
+            <p>"The wallet management system is incredibly user-friendly, making it easy for anyone to navigate and manage their finances efficiently."</p>
+            <p>- Jado Fils</p>
+        </div>
+        <div class="testimonial-card">
+            <p>"The data visualization on the dashboard provides clear insights into my financial health. I can track expenses and income with just a glance."</p>
+            <p>- Jado Fils SALIM</p>
+        </div>
+        <div class="testimonial-card">
+            <p>"The system's role-based access ensures that data is secure and specific users have the right permissions to access or modify information."</p>
+            <p>- Salim Client</p>
+        </div>
+    </div>
+</section>
+
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" required></textarea>
+                <li><a href="#" class="btn">Contact ?</a></li>
+            </form>
+        </div>
+    </section>
+
+
+
+
+
+    <footer>
+      <div class="container">
+          <div class="footer-content">
+            <div class="logo">
+              <h3>Our Technologies</h3> 
+              <ul class="tech-icons">
+                <li><i class="fab fa-node-js"></i>Nodejs</li> 
+                <li><i class="fab fa-php"></i>Php</li> 
+                <li><i class="fab fa-java"></i>Java</li> 
+                <li><i class="fab fa-react"></i>ReactJs</li> 
+                <li><i class="fab fa-angular"></i>Angular</li> 
+                <li><i class="fab fa-python"></i>Python</li> 
+              </ul>
+            </div>
+              <!-- Channels Section -->
+              <div class="channels">
+                  <h4>Channels</h4>
+                  <ul>
+                      <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                      <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                      <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                      <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                  </ul>
+              </div>
+              
+              <!-- Stakeholders Section -->
+              <div class="stakeholders">
+                  <h4>Stakeholders</h4>
+                  <ul>
+                      <li><a href="#"><i class="fas fa-briefcase"></i> Partners</a></li>
+                      <li><a href="#"><i class="fas fa-building"></i> Affiliates</a></li>
+                      <li><a href="#"><i class="fas fa-users"></i> Community</a></li>
+                  </ul>
+              </div>
+              
+              <!-- Other Links Section -->
+              <div class="other-links">
+                  <h4>Other Links</h4>
+                  <ul>
+                      <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                      <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                      <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                      <li><a href="#"><i class="fas fa-question-circle"></i> FAQs</a></li>
+                  </ul>
+              </div>
+              
+              <!-- Products Section -->
+              <div class="products">
+                  <h4>Products</h4>
+                  <ul>
+                      <li><a href="#"><i class="fas fa-wallet"></i> Wallet Management</a></li>
+                      <li><a href="#"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                      <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a></li>
+                      <li><a href="#"><i class="fas fa-lock"></i> Secure Payments</a></li>
+                  </ul>
+              </div>
+          </div>
+  
+            <!-- Contact Section -->
+            <div class="contact" style="display: flex;flex-direction: column; align-items: center; justify-content: center;
+            margin-right: 0;">
+              <h4 style="color: white;">Contact Us</h4>
+              <p style="color: #ff7200;"><i class="fas fa-phone"></i> <span  style="color: #ff7200;">+250780697450</span></p>
+              <p style="color: #ff7200;"><i class="fas fa-envelope"></i> <a style="color: #ff7200" href="mailto:jd.fils.codinghidden@gmail.com">jd.fils.codinghidden@gmail.com</a></p>
+          </div>
+      </div>
+          <!-- Footer Bottom -->
+          <p  style="display: flex;flex-direction: column; align-items: center; justify-content: center; margin-top: 5pc;">&copy; 2023 Wallet Management System. All rights reserved.</p>
+      
+  </footer>
+ <script src="./js/serverUser.js"></script>
+ <script src="./js/validation.js"></script>
+
+
+</body>
+</html>
