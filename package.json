@@ -5,8 +5,7 @@
   "scripts": {
     "build": "echo 'No build step required'",
     "start": "node app.js",
-    "dev": "node app.js",
-    "postinstall": "npm install"
+    "dev": "node app.js"
   },
   "keywords": [],
   "author": "",
