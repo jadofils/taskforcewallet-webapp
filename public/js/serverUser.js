@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         password: form.password.value.trim(),
       };
   
-      fetch('http://localhost:5000/api/users/register', {
+      fetch('https://taskforcewallet-webapp.onrender.com/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
