@@ -27,7 +27,6 @@ exports.register = async (req, res) => {
             firstname,
             lastname,
             username, // Add the username
-
             email,
             password: hashedPassword,
         });
