@@ -23,11 +23,13 @@ exports.register = async (req, res) => {
             email,
             password: hashedPassword,
         });
-
+         console.log("data: " + newUser);
         await newUser.save();
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (err) {
+        console.log("data: " + newUser);
+
         res.status(500).json({ message: 'Error registering user', error: err.message });
     }
 };
