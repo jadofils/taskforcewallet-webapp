@@ -20,12 +20,12 @@ app.use('/api/users/register', userRoutes);
 
 // Route for ge
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html')); // Adjusted path
+    res.sendFile(path.join(__dirname, 'public', './public/index.html')); // Adjusted path
 });
 //now nodemon done
 // Custom 404 page
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'public', '404.html')); // Adjusted path
+    res.status(404).sendFile(path.join(__dirname, 'public', './public/404.html')); // Adjusted path
 });
 
 // Global error handler
@@ -35,5 +35,5 @@ app.use((err, req, res, next) => {
 });
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Server running at https://taskforcewallet-webapp.onrender.com${PORT}`);
+    console.log(`Server running at https://taskforcewallet-webapp.onrender.com`);
 });
