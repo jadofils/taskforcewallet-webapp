@@ -1,20 +1,20 @@
-# Use an official Node.js runtime as a parent image, specify a version range
-FROM node:14-alpine
+# Use Node.js 18 as the base image
+FROM node:18-alpine
 
-# Set the working directory
-WORKDIR /usr/src/app
+# Set working directory inside the container
+WORKDIR /usr/backend/app
 
-# Copy package.json and package-lock.json
+# Copy package files first for efficient caching
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install production dependencies
+RUN npm ci --only=production
 
-# Copy the rest of the application code
+# Copy the entire application into the container
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 3000
+# Expose the application port
+EXPOSE 5000
 
-# Define the command to run the application
-CMD [ "npm", "start" ]
+# Run the application
+CMD ["npm", "start"]

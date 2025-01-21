@@ -1,0 +1,70 @@
+/* Cards Container */
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 78px; /* Added margin-top for proper spacing */ 
+     margin-left: 250px; /* Added margin-top for proper spacing */
+    padding: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  /* Individual Card Styling */
+  .card {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    padding: 8px; /* Reduced padding for better fit */
+    width: calc(25% - 16px); /* Adjusted width to fit better */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+  }
+  
+  /* Card Hover Effect */
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+  }
+  
+  /* Icon Styling */
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+  }
+  
+  /* Title Styling */
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px; /* Reduced margin-bottom */
+    font-weight: bold;
+  }
+  
+  /* Text Styling */
+  .card-text {
+    font-size: 1rem;
+    color: var(--accent-color);
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media screen and (max-width: 1200px) {
+    .card {
+      width: calc(33.33% - 16px); /* 3 cards horizontally */
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .card {
+      width: calc(50% - 16px); /* 2 cards horizontally */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .card {
+      width: 100%; /* 1 card per row */
+    }
+  }
+  

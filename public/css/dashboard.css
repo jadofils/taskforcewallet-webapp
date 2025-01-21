@@ -1,0 +1,108 @@
+/* Sidebar Styles */
+.sidebar {
+    width: 200px;
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    padding: 20px 0;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    overflow-y: auto;
+    z-index: 2;
+}
+
+.sidebar-header {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.nav-section {
+    margin-bottom: 15px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+.nav-link i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Icon Sizes */
+.nav-link i {
+    font-size: 20px;
+}
+
+/* Styling the <hr> after each nav link */
+.sidebar-hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 8px 0;
+}
+/* Sidebar Scrollbar Styling */
+.sidebar::-webkit-scrollbar {
+    width: 4px; /* Set the width of the scrollbar */
+    background: rgba(0, 0, 0, 0.1); /* Light background for the scrollbar track */
+}
+
+/* Hide scrollbar by default */
+.sidebar {
+    overflow-y: hidden; /* Hide scrollbar initially */
+}
+
+/* When hovering over the sidebar, show the scrollbar */
+.sidebar:hover {
+    overflow-y: auto; /* Show scrollbar when hovering */
+}
+
+/* Scrollbar thumb */
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 114, 0, 0.8); /* Set the thumb color to FF7200 */
+    border-radius: 10px;
+}
+
+/* When hovering over the sidebar, change the thumb color */
+.sidebar:hover::-webkit-scrollbar-thumb {
+    background-color: #FF7200; /* Change to bright orange on hover */
+}
+
+/* Optional: Styling the scrollbar track */
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* Light background for the scrollbar track */
+    border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    body {
+        flex-direction: column;
+    }
+}

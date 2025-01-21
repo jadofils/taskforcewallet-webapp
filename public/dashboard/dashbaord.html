@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Management System</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/table.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+      html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px; /* Adjust this value based on your navbar height */
+        }
+
+        /* Ensure sections have proper spacing and padding */
+        section {
+            padding-top: 20px; /* Add some padding to prevent content from being hidden under navbar */
+        }
+
+        /* Optional: Add active state for nav links */
+        .nav-links .active {
+            color: #ff7200;
+        }
+
+        /*graphs */
+        .container {
+            width: 100%;
+            margin-left: 250px;
+            overflow-x: auto;
+           
+        }
+
+        canvas {
+    width: 140%; /* Makes the canvas 120% of the container's width */
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+</style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="./images/logo.jpeg" alt="Logo"> 
+        </div>
+        <ul class="nav-links">
+            <li><a href="#top">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#service">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#register" class="btn">Register</a></li>
+            <li><a href="#login" class="btn">Login</a></li>
+        </ul>
+    </nav>
+<!-- make the vertical sidebar with icons -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h3>App Name</h3>
+    </div>
+    <div class="nav-section">
+        <a href="#dashboard" class="nav-link">Dashboard</a>
+        <hr>
+        <a href="#" class="nav-link"><i class="fas fa-user"></i> User</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-credit-card"></i> Accounts</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-wallet"></i> Budgets</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-th-list"></i> Category</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-hand-holding-usd"></i> Withdraw</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-balance-scale"></i> Balance</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-credit-card"></i> Loan</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-percent"></i> Interest</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-chart-line"></i> Report</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-cogs"></i> Settings</a>
+        <hr class="sidebar-hr">
+        <a href="#" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+</div>
+
+<!-- Include Font Awesome for the icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+
+<div class="cards-container">
+    <div class="card">
+      <div class="card-icon">
+        <!-- Icon here (use any icon library, e.g., Font Awesome, Material Icons) -->
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <h3 class="card-title">Revenue</h3>
+      <p class="card-text">Total Revenue for the month</p>
+    </div>
+  
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-cogs"></i>
+      </div>
+      <h3 class="card-title">Expenses</h3>
+      <p class="card-text">Total Expenses for the month</p>
+    </div>
+  
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <h3 class="card-title">Users</h3>
+      <p class="card-text">Total active users</p>
+    </div>
+  
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-dollar-sign"></i>
+      </div>
+      <h3 class="card-title">Profit</h3>
+      <p class="card-text">Profit for the current quarter</p>
+    </div>
+  </div>
+  
+
+  <div class="table-container">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>Accounts</th>
+                <th>Budgets</th>
+                <th>Category Spending</th>
+                <th>Profit</th>
+                <th>Loss</th>
+                <th>Interest</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example Data Rows -->
+            <tr>
+                <td>1</td>
+                <td>johndoe</td>
+                <td>Doe</td>
+                <td>John</td>
+                <td>johndoe@example.com</td>
+                <td>Account 1</td>
+                <td>$500</td>
+                <td>$200</td>
+                <td>$100</td>
+                <td>$50</td>
+                <td>5%</td>
+                <td>2025-01-21</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>janedoe</td>
+                <td>Doe</td>
+                <td>Jane</td>
+                <td>janedoe@example.com</td>
+                <td>Account 2</td>
+                <td>$600</td>
+                <td>$250</td>
+                <td>$150</td>
+                <td>$70</td>
+                <td>6%</td>
+                <td>2025-01-22</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>alicesmith</td>
+                <td>Smith</td>
+                <td>Alice</td>
+                <td>alicesmith@example.com</td>
+                <td>Account 3</td>
+                <td>$700</td>
+                <td>$300</td>
+                <td>$200</td>
+                <td>$90</td>
+                <td>7%</td>
+                <td>2025-01-23</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>bobsmith</td>
+                <td>Smith</td>
+                <td>Bob</td>
+                <td>bobsmith@example.com</td>
+                <td>Account 4</td>
+                <td>$800</td>
+                <td>$350</td>
+                <td>$250</td>
+                <td>$100</td>
+                <td>8%</td>
+                <td>2025-01-24</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>caroljohnson</td>
+                <td>Johnson</td>
+                <td>Carol</td>
+                <td>caroljohnson@example.com</td>
+                <td>Account 5</td>
+                <td>$900</td>
+                <td>$400</td>
+                <td>$300</td>
+                <td>$120</td>
+                <td>9%</td>
+                <td>2025-01-25</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="12">Showing 5 rows</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<style>
+   
+
+   
+</style>
+</head>
+<body>
+<div class="container">
+    <h2 style="text-align:center;">Monthly Trending Activity</h2>
+    <canvas id="activityChart"></canvas>
+</div>
+
+<script>
+    // Get CSS variable values
+    const rootStyles = getComputedStyle(document.documentElement);
+    const primaryColor = rootStyles.getPropertyValue('--primary-color').trim();
+    const accentColor = rootStyles.getPropertyValue('--accent-color').trim();
+    const secondaryColor = rootStyles.getPropertyValue('--secondary-color').trim();
+
+    const ctx = document.getElementById('activityChart').getContext('2d');
+
+    const activityChart = new Chart(ctx, {
+        type: 'line', // You can change to 'bar' for a bar chart
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], // Months
+            datasets: [{
+                label: 'Profit',
+                data: [5000, 6000, 7000, 8000, 6000, 7000, 7500, 8000, 9000, 9500, 10000, 11000],
+                borderColor: primaryColor, // Primary color (Vibrant orange)
+                backgroundColor: primaryColor + '80', // 50% opacity
+                fill: true,
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 4
+            },
+            {
+                label: 'Interest',
+                data: [2000, 3000, 4000, 3500, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000],
+                borderColor: 'rgba(0, 128, 255, 1)', // A blue for contrast
+                backgroundColor: 'rgba(0, 128, 255, 0.2)',
+                fill: true,
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 4
+            },
+            {
+                label: 'Budget',
+                data: [4000, 4500, 5000, 6000, 7000, 7500, 8000, 8500, 9000, 9500, 10000, 11000],
+                borderColor: 'rgba(0, 255, 0, 1)', // Green for Budget
+                backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                fill: true,
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 4
+            },
+            {
+                label: 'Loss',
+                data: [-2000, -1000, -500, -200, -100, 0, 100, 200, 400, 800, 1200, 1500],
+                borderColor: 'rgba(255, 0, 0, 1)', // Red for Loss
+                backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                fill: true,
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: accentColor // Change legend text color to white
+                    }
+                },
+                tooltip: {
+                    backgroundColor: primaryColor // Tooltip background color
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.2)' // Light grid color for x-axis
+                    },
+                    ticks: {
+                        color: accentColor // X-axis ticks color
+                    }
+                },
+                y: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.2)' // Light grid color for y-axis
+                    },
+                    ticks: {
+                        color: accentColor // Y-axis ticks color
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+
+
+
+
+<script src="./js/serverUser.js"></script>
+<script src="../js/charts.js"></script>
+<script src="./js/validation.js"></script>
+  
+  
+  </body>
+  </html>

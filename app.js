@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); // Adjusted path
 // Routes
-app.use('/api/users', userRoutes);
+app.use('/api/users/register', userRoutes);
 
 // Route for ge
 app.get('/', (req, res) => {
