@@ -2,41 +2,35 @@ const { User } = require('../models/wallet');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-// Register a new user
+// Register a new 
+// 
 exports.register = async (req, res) => {
     try {
         const { firstname, lastname, email, password, username } = req.body;
-        console.log(req.body);
 
-        // Check if all required fields are provided
-        if (!username) {
-            return res.status(400).json({ message: 'Username is required' });
+        // Validate required fields
+        if (!username || !email || !password || !firstname || !lastname) {
+            return res.status(400).json({ success: false, message: 'All fields are required' });
         }
 
-        // Check if the user already exists by email or username
+        // Check if user exists
         const existingUser = await User.findOne({ $or: [{ email }, { username }] });
         if (existingUser) {
-            return res.status(400).json({ message: 'User already exists' });
+            return res.status(400).json({ success: false, message: 'User already exists' });
         }
 
-        // Hash the password
+        // Hash the password and create the user
         const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Create a new user
-        const newUser = new User({
-            firstname,
-            lastname,
-            username, // Add the username
-            email,
-            password: hashedPassword,
-        });
+        const newUser = new User({ firstname, lastname, username, email, password: hashedPassword });
         await newUser.save();
 
-        res.status(201).json({ message: 'User registered successfully' });
+        return res.status(201).json({ success: true, message: 'User registered successfully' });
     } catch (err) {
-        res.status(500).json({ message: 'Error registering user', error: err.message });
+        return res.status(500).json({ success: false, message: 'Error registering user', error: err.message });
     }
 };
+
+
 
 // Login a user
 exports.login = async (req, res) => {
