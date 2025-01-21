@@ -1,46 +1,52 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-  // Add event listener for form submission
-  document.getElementById('registerForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the form from submitting the traditional way
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('registerForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-      const form = event.target;
-      
-      // Collect form data
-      const newUser = {
-          firstname: form.firstname.value.trim(),
-          lastname: form.lastname.value.trim(),
-          username: form.username.value.trim(),  // Assuming username is unique and not required for registration
-          email: form.email.value.trim(),
-          password: form.password.value.trim(),
-      };
+        const form = event.target;
+        const newUser = {
+            firstname: form.firstname.value.trim(),
+            lastname: form.lastname.value.trim(),
+            username: form.username.value.trim(),
+            email: form.email.value.trim(),
+            password: form.password.value.trim(),
+        };
 
-      // Validate that all fields are filled (basic check)
-      if (!newUser.firstname || !newUser.lastname ||!newUser.username|| !newUser.email || !newUser.password) {
-          alert('Please fill in all fields.');
-          return;
-      }
+        const validationResult = validateForm(newUser);
+        if (!validationResult.isValid) {
+            alert(validationResult.message);
+            return;
+        }
 
-      // Make the POST request to the backend
-      fetch('https://taskforcewallet-webapp.onrender.com/api/users/register', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newUser),
-      })
-      .then(response => response.json())
-      .then(data => {
-          if (data.success) {
-              alert('Registration successful!');
-              // Redirect to a different page or perform other actions
-              // window.location.href = '/dashboard';  // Example redirect
-          } else {
-              alert('Registration failed: ' + data.message);
-          }
-      })
-      .catch(error => {
-          console.error('Error:', error);
-          alert('An error occurred while registering.');
-      });
-  });
+        try {
+            const response = await fetch('https://taskforcewallet-webapp.onrender.com/api/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newUser),
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                alert(data.message); // Show success message
+            } else {
+                alert('Registration failed: ' + data.message); // Show error message
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred during registration.');
+        }
+    });
+
+    function validateForm(data) {
+        if (!data.firstname) return { isValid: false, message: 'First name is required.' };
+        if (!data.lastname) return { isValid: false, message: 'Last name is required.' };
+        if (!data.username) return { isValid: false, message: 'Username is required.' };
+        if (!data.email) return { isValid: false, message: 'Email is required.' };
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return { isValid: false, message: 'Invalid email format.' };
+        if (!data.password) return { isValid: false, message: 'Password is required.' };
+        if (data.password.length < 6) return { isValid: false, message: 'Password must be at least 6 characters long.' };
+
+        return { isValid: true };
+    }
 });
