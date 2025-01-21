@@ -14,18 +14,18 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware for parsing JSON and serving static files
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public'))); // Adjusted path
+app.use(express.static(path.join(__dirname, "../public"))); // Adjusted path
 // Routes
 app.use('/api/users/register', userRoutes);
 
 // Route for ge
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', './public/index.html')); // Adjusted path
+    res.sendFile(path.join(__dirname, '../public', 'index.html')); // Adjusted path
 });
 //now nodemon done
 // Custom 404 page
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'public', './public/404.html')); // Adjusted path
+    res.status(404).sendFile(path.join(__dirname, '../public', '404.html')); // Adjusted path
 });
 
 // Global error handler
