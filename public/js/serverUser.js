@@ -9,18 +9,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
       const newUser = {
           firstname: form.firstname.value.trim(),
           lastname: form.lastname.value.trim(),
+          username: form.username.value.trim(),  // Assuming username is unique and not required for registration
           email: form.email.value.trim(),
           password: form.password.value.trim(),
       };
 
       // Validate that all fields are filled (basic check)
-      if (!newUser.firstname || !newUser.lastname || !newUser.email || !newUser.password) {
+      if (!newUser.firstname || !newUser.lastname ||!newUser.username|| !newUser.email || !newUser.password) {
           alert('Please fill in all fields.');
           return;
       }
 
       // Make the POST request to the backend
-      fetch('https://taskforcewallet-webapp.onrender.com/api/users/register', {
+      const url="https://taskforcewallet-webapp.onrender.com";
+      fetch('http://localhost:5000/api/users/register', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
