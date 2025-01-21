@@ -21,8 +21,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
 
       // Make the POST request to the backend
-      const url="https://taskforcewallet-webapp.onrender.com";
-      fetch('http://localhost:5000/api/users/register', {
+      fetch(`https://taskforcewallet-webapp.onrender.com/api/v1/register`, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
