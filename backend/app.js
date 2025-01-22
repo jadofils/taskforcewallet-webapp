@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, "../public"))); // Serve static file
 
 // Routes
 app.use('/api/users/register', userRoutes);
+app.use('/api/users/login', userRoutes);
 
 // Route to serve the main index.html page
 app.get('/', (req, res) => {
@@ -38,6 +39,6 @@ app.use((err, req, res, next) => {
 
 // Start the server
 app.listen(PORT, () => {
- //console.log(`Server running at http://localhost:${PORT}`);
-    console.log(`Server running at https://taskforcewallet-webapp.onrender.com`);
+ console.log(`Server running at http://localhost:${PORT}`);
+  //  console.log(`Server running at https://taskforcewallet-webapp.onrender.com`);
 });

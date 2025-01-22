@@ -30,8 +30,6 @@ exports.register = async (req, res) => {
     }
 };
 
-
-
 // Login a user
 exports.login = async (req, res) => {
     try {
@@ -56,13 +54,13 @@ exports.login = async (req, res) => {
             { expiresIn: '1h' }
         );
 
-        res.json({
+        return res.json({
             message: 'Login successful',
             token,
             user: {
                 id: user._id,
-                first_name: user.first_name,
-                last_name: user.last_name,
+                firstname: user.firstname,
+                lastname: user.lastname,
                 email: user.email,
             },
         });
