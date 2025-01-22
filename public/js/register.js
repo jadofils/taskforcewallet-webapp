@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
 
         const form = event.target;
+        const submitButton = form.querySelector('button[type="submit"]');
+        
+        // Show loading spinner on the button
+        submitButton.innerHTML = `<div class="spinner"></div> Register`;
+        submitButton.disabled = true;
+        submitButton.style.backgroundColor = '#ff7200';
+
         const newUser = {
             firstname: form.firstname.value.trim(),
             lastname: form.lastname.value.trim(),
@@ -14,11 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const validationResult = validateForm(newUser);
         if (!validationResult.isValid) {
             alert(validationResult.message);
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Register';
+            submitButton.style.backgroundColor = ''; // Reset color
             return;
         }
 
         try {
-            const response = await fetch('https://taskforcewallet-webapp.onrender.com/api/users/register', {
+            const local="http://localhost:5000"
+            const globel="https://taskforcewallet-webapp.onrender.com"
+            const response = await fetch('http://localhost:5000/api/users/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -29,12 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (data.success) {
                 alert(data.message); // Show success message
+                form.reset(); // Clear form
             } else {
                 alert('Registration failed: ' + data.message); // Show error message
             }
         } catch (error) {
             console.error('Error:', error);
             alert('An error occurred during registration.');
+        } finally {
+            // Reset button after submission
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Register';
+            submitButton.style.backgroundColor = ''; // Reset color
         }
     });
 

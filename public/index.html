@@ -56,22 +56,22 @@
                 <h2>Create Account</h2>
                 <form id="registerForm">
                     <div class="form-group">
-                        <input type="text" name="firstname" placeholder="First Name">
+                        <input type="text" name="firstname" placeholder="First Name" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="lastname" placeholder="Last Name">
+                        <input type="text" name="lastname" placeholder="Last Name" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="Email Address">
+                        <input type="email" name="email" placeholder="Email Address" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input type="username" name="username" placeholder="username name">
+                        <input type="username" name="username" placeholder="username name" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Password" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input type="password" name="confirmPassword" placeholder="Confirm Password">
+                        <input type="password" name="confirmPassword" placeholder="Confirm Password" autocomplete="off">
                     </div>
                     <button type="submit" class="btn" style="width: 100%;">Register</button>
                 </form>
@@ -84,10 +84,10 @@
                 <h2>Login</h2>
                 <form id="loginForm">
                     <div class="form-group">
-                        <input type="email" placeholder="Email Address">
+                        <input type="email" id="email" placeholder="Email Address" autocomplete="off" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="Password">
+                        <input type="password" id="password" placeholder="Password" autocomplete="off" required>
                     </div>
                     <button type="submit" class="btn" style="width: 100%;">Login</button>
                 </form>
@@ -95,6 +95,8 @@
                     <p>Don't have an account? <a href="#" class="switch-form" data-form="register">Register</a></p>
                 </div>
             </div>
+
+
         </div>
     </div>
 </section>
@@ -258,8 +260,9 @@
           <p  style="display: flex;flex-direction: column; align-items: center; justify-content: center; margin-top: 5pc;">&copy; 2023 Wallet Management System. All rights reserved.</p>
       
   </footer>
- <script src="./js/serverUser.js"></script>
- <script src="./js/validation.js"></script>
+  <script src="./js/register.js"></script>
+  <script src="./js/login.js"></script>
+  <script src="./js/validation.js"></script>
 
 
 </body>
