@@ -18,8 +18,8 @@ app.use(express.urlencoded({ extended: true })); // To parse URL-encoded data
 app.use(express.static(path.join(__dirname, "../public"))); // Serve static files
 
 // Routes
-app.use('/api/users/register', userRoutes);
-app.use('/api/users/login', userRoutes);
+app.use('/api/users', userRoutes);
+
 
 // Route to serve the main index.html page
 app.get('/', (req, res) => {
