@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const local="http://localhost:5000"
+            const local="https://taskforcewallet-webapp.onrender.com"
             const globel="https://taskforcewallet-webapp.onrender.com"
-            const response = await fetch('https://taskforcewallet-webapp.onrender.com/api/users/register', {
+            const response = await fetch(`${globel}/api/users/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
