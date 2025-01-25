@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interest Management</title>
+    <!-- Include Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Include Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      /* Global Styles */
+      :root {
+        --primary-color: #ff7200; /* Vibrant orange */
+        --secondary-color: #1e3d59; /* Rich navy blue */
+        --accent-color: #ffffff; /* Clean white */
+        --text-dark: #2d2d2d; /* Soft black for text */
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+      }
+
+      /* Interest Calculation Form */
+      .interest-form {
+        margin-left: 200px; /* Left margin of 200px */
+        margin-top: 150px;
+        padding: 20px;
+        background-color: var(--accent-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .interest-form h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: var(--secondary-color);
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 5px;
+        color: var(--secondary-color);
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid var(--secondary-color);
+        border-radius: 5px;
+        font-size: 1rem;
+        color: var(--text-dark);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 8px rgba(255, 114, 0, 0.3);
+        outline: none;
+      }
+
+      .form-group input:hover,
+      .form-group select:hover {
+        border-color: var(--primary-color);
+      }
+
+      /* Error Message */
+      .error-message {
+        color: #dc3545; /* Red for errors */
+        font-size: 0.9rem;
+        margin-top: 5px;
+        display: none;
+      }
+
+      /* Interest History Table */
+      .table-container {
+        margin-left: 200px; /* Left margin of 200px */
+        padding: 20px;
+        width: calc(100% - 200px); /* Adjust width to fit the remaining space */
+        overflow-x: auto;
+        margin-bottom: 30px;
+      }
+
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: var(--accent-color);
+        color: var(--text-dark);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .data-table thead th {
+        background-color: var(--secondary-color);
+        color: var(--accent-color);
+        padding: 12px 15px;
+        font-size: 1rem;
+        text-align: left;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+
+      .data-table tbody td {
+        padding: 12px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+      }
+
+      .data-table tbody tr:hover {
+        background-color: rgba(255, 114, 0, 0.1);
+      }
+
+      /* Chart Container */
+      .chart-container {
+        margin-left: 200px; /* Left margin of 200px */
+        padding: 20px;
+        width: calc(100% - 200px); /* Adjust width to fit the remaining space */
+        background-color: var(--accent-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: none; /* Hide the chart by default */
+      }
+
+      .chart-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: var(--secondary-color);
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 768px) {
+        .interest-form,
+        .table-container,
+        .chart-container {
+          margin-left: 0; /* Reset margin for small screens */
+          width: 100%; /* Full width for small screens */
+          padding: 10px; /* Adjusted padding for small screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Interest Calculation Form -->
+    <div class="interest-form">
+      <h2><i class="fas fa-calculator"></i> Calculate Interest</h2>
+      <form id="interestForm">
+        <div class="form-group">
+          <label for="account"><i class="fas fa-wallet"></i> Select Account</label>
+          <select id="account" name="account" required>
+            <option value="" disabled selected>Select an account</option>
+            <option value="account1">Account 1</option>
+            <option value="account2">Account 2</option>
+          </select>
+          <div class="error-message" id="accountError">Please select an account.</div>
+        </div>
+        <div class="form-group">
+          <label for="principal"><i class="fas fa-money-bill-wave"></i> Principal (Monthly)</label>
+          <select id="principal" name="principal" required>
+            <option value="" disabled selected>Select a month</option>
+            <option value="1000">January</option>
+            <option value="1500">February</option>
+            <option value="2000">March</option>
+            <option value="2500">April</option>
+            <option value="3000">May</option>
+            <option value="3500">June</option>
+            <option value="4000">July</option>
+            <option value="4500">August</option>
+            <option value="5000">September</option>
+            <option value="5500">October</option>
+            <option value="6000">November</option>
+            <option value="6500">December</option>
+          </select>
+          <div class="error-message" id="principalError">Please select a month.</div>
+        </div>
+        <div class="form-group">
+          <label for="year"><i class="fas fa-calendar"></i> Select Year</label>
+          <select id="year" name="year" required>
+            <option value="" disabled selected>Select a year</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+          </select>
+          <div class="error-message" id="yearError">Please select a year.</div>
+        </div>
+        <div class="form-group">
+          <label for="rate"><i class="fas fa-percentage"></i> Interest Rate (%)</label>
+          <input type="number" id="rate" name="rate" placeholder="Enter interest rate" required />
+          <div class="error-message" id="rateError">Please enter a valid interest rate.</div>
+        </div>
+        <div class="form-group">
+          <label for="period"><i class="fas fa-calendar-alt"></i> Period (Months)</label>
+          <input type="number" id="period" name="period" placeholder="Enter period in months" required />
+          <div class="error-message" id="periodError">Please enter a valid period.</div>
+        </div>
+        <button type="submit" class="btn">Calculate</button>
+      </form>
+    </div>
+
+    <!-- Interest History Table -->
+    <div class="table-container">
+      <h2><i class="fas fa-history"></i> Interest History</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Account</th>
+            <th>Principal</th>
+            <th>Rate (%)</th>
+            <th>Period (Months)</th>
+            <th>Interest Earned</th>
+          </tr>
+        </thead>
+        <tbody id="interestHistory">
+          <!-- Rows will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Chart Container -->
+    <div class="chart-container">
+      <h2><i class="fas fa-chart-line"></i> Interest Trends</h2>
+      <canvas id="interestChart"></canvas>
+    </div>
+
+    <script>
+      // Chart Configuration
+      const ctx = document.getElementById("interestChart").getContext("2d");
+      const interestChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+          datasets: [
+            {
+              label: "Interest Earned",
+              data: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650],
+              borderColor: "rgba(255, 114, 0, 1)", // Primary color
+              backgroundColor: "rgba(255, 114, 0, 0.2)",
+              fill: true,
+              tension: 0.4,
+              borderWidth: 2,
+              pointRadius: 4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: "#2d2d2d", // Text color
+              },
+            },
+            tooltip: {
+              backgroundColor: "rgba(255, 114, 0, 1)", // Tooltip background color
+            },
+          },
+          scales: {
+            x: {
+              grid: {
+                color: "rgba(255, 255, 255, 0.2)", // Light grid color for x-axis
+              },
+              ticks: {
+                color: "#2d2d2d", // X-axis ticks color
+              },
+            },
+            y: {
+              grid: {
+                color: "rgba(255, 255, 255, 0.2)", // Light grid color for y-axis
+              },
+              ticks: {
+                color: "#2d2d2d", // Y-axis ticks color
+              },
+            },
+          },
+        },
+      });
+
+      // Interest Calculation Logic
+      document.getElementById("interestForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Get form values
+        const account = document.getElementById("account").value;
+        const principal = parseFloat(document.getElementById("principal").value);
+        const year = document.getElementById("year").value;
+        const rate = parseFloat(document.getElementById("rate").value);
+        const period = parseInt(document.getElementById("period").value);
+
+        // Validate inputs
+        let isValid = true;
+
+        if (!account) {
+          document.getElementById("accountError").style.display = "block";
+          isValid = false;
+        } else {
+          document.getElementById("accountError").style.display = "none";
+        }
+
+        if (isNaN(principal) || principal <= 0) {
+          document.getElementById("principalError").style.display = "block";
+          isValid = false;
+        } else {
+          document.getElementById("principalError").style.display = "none";
+        }
+
+        if (!year) {
+          document.getElementById("yearError").style.display = "block";
+          isValid = false;
+        } else {
+          document.getElementById("yearError").style.display = "none";
+        }
+
+        if (isNaN(rate) || rate <= 0) {
+          document.getElementById("rateError").style.display = "block";
+          isValid = false;
+        } else {
+          document.getElementById("rateError").style.display = "none";
+        }
+
+        if (isNaN(period) || period <= 0) {
+          document.getElementById("periodError").style.display = "block";
+          isValid = false;
+        } else {
+          document.getElementById("periodError").style.display = "none";
+        }
+
+        if (!isValid) return;
+
+        // Calculate interest (simple interest formula: Interest = (Principal * Rate * Time) / 100)
+        const interest = (principal * rate * period) / 100;
+
+        // Add new row to the table
+        const tableBody = document.getElementById("interestHistory");
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+          <td>${new Date().toLocaleDateString()}</td>
+          <td>${account}</td>
+          <td>$${principal.toFixed(2)}</td>
+          <td>${rate}</td>
+          <td>${period}</td>
+          <td>$${interest.toFixed(2)}</td>
+        `;
+        tableBody.appendChild(newRow);
+
+        // Reset form
+        document.getElementById("interestForm").reset();
+      });
+    </script>
+  </body>
+</html>

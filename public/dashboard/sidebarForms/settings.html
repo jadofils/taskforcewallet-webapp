@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings</title>
+    <!-- Include Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Include Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      /* Global Styles */
+      :root {
+        --primary-color: #ff7200; /* Vibrant orange */
+        --secondary-color: #1e3d59; /* Rich navy blue */
+        --accent-color: #ffffff; /* Clean white */
+        --text-dark: #2d2d2d; /* Soft black for text */
+        --success-color: #28a745; /* Green for success */
+        --failed-color: #dc3545; /* Red for failure */
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+      }
+
+      /* Navigation Bar */
+      nav {
+        background-color: var(--accent-color);
+        padding: 1rem 5%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo img {
+        max-height: 50px;
+        width: auto;
+        object-fit: contain;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        align-items: center;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links a {
+        color: var(--text-dark);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-color);
+      }
+
+      .btn {
+        background-color: var(--primary-color);
+        color: var(--accent-color);
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 114, 0, 0.3);
+      }
+
+      /* Cards Container */
+      .cards-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 78px; /* Added margin-top for proper spacing */
+        margin-left: 200px; /* Adjust the left margin to push the cards after the sidebar */
+        padding: 10px;
+        flex-wrap: wrap;
+        width: calc(100% - 200px); /* Full screen width minus 200px */
+      }
+
+      /* Individual Card Styling */
+      .card {
+        background-color: var(--secondary-color);
+        color: var(--accent-color);
+        padding: 12px; /* Reduced padding for better spacing */
+        width: calc(25% - 16px); /* Adjusted width to fit better */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        z-index: 3;
+      }
+
+      .card-icon {
+        font-size: 2.5rem; /* Reduced icon size */
+        margin-bottom: 8px; /* Reduced margin-bottom */
+        color: var(--primary-color);
+      }
+
+      .card-title {
+        font-size: 1.25rem; /* Reduced font size */
+        margin-bottom: 6px; /* Reduced margin-bottom */
+        font-weight: bold;
+      }
+
+      .card-text {
+        font-size: 0.9rem; /* Reduced font size */
+        color: var(--accent-color);
+      }
+
+      /* Table Container for scrolling */
+      .table-container {
+        width: calc(100% - 200px); /* Full screen width minus 200px */
+        overflow-x: auto; /* Horizontal scrolling */
+        overflow-y: auto; /* Vertical scrolling */
+        max-height: calc(100vh - 200px); /* Full viewport height minus 200px */
+        z-index: 1;
+        position: relative;
+        margin-top: 78px; /* Added margin-top for proper spacing */
+        margin-left: 200px; /* Adjust the left margin to push the table after the sidebar */
+        padding: 10px;
+      }
+
+      /* Table Styling */
+      .data-table {
+        width: 100%; /* Table takes full width of the container */
+        border-collapse: collapse;
+        position: relative;
+        background-color: var(--secondary-color);
+        color: var(--accent-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+      }
+
+      .data-table thead th {
+        background-color: var(--secondary-color); /* Background color of the header */
+        color: var(--accent-color); /* White text color */
+        padding: 12px 15px;
+        font-size: 1rem;
+        text-align: left;
+        position: sticky;
+        top: 0; /* Sticky to the top */
+        z-index: 2; /* Ensure header stays above table body */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for emphasis */
+      }
+
+      .data-table tbody td {
+        background-color: #fff; /* White background for rows */
+        padding: 12px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Border between rows */
+        font-size: 1rem;
+        color: var(--text-dark); /* Text color */
+      }
+
+      .data-table tfoot {
+        background-color: var(--secondary-color); /* Footer background color */
+        color: var(--accent-color); /* Footer text color */
+        position: sticky;
+        bottom: 0; /* Stick the footer to the bottom */
+        z-index: 2; /* Ensure footer stays at the bottom */
+      }
+
+      .data-table tfoot td {
+        padding: 12px 15px;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      /* Scrollbars */
+      .table-container::-webkit-scrollbar {
+        width: 8px;
+        height: 8px; /* For horizontal scrollbar */
+      }
+
+      .table-container::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 114, 0, 0.8); /* FF7200 color */
+        border-radius: 10px;
+        border: 2px solid #fff; /* Adds a white border around the thumb */
+      }
+
+      .table-container::-webkit-scrollbar-track {
+        background-color: rgba(255, 114, 0, 0.2); /* Slightly transparent for a subtle look */
+        border-radius: 10px;
+      }
+
+      .table-container::-webkit-scrollbar-corner {
+        background-color: rgba(255, 114, 0, 0.2); /* Same color as the track */
+      }
+
+      /* Hover and Focus Effects */
+      .data-table tbody tr:hover {
+        background-color: rgba(255, 114, 0, 0.1); /* Hover effect on rows */
+      }
+
+      .data-table tbody tr:focus-within {
+        background-color: rgba(255, 114, 0, 0.2); /* Focus effect on rows */
+      }
+
+      /* Chart Container */
+      .chart-container {
+        width: calc(100% - 200px); /* Full screen width minus 200px */
+        margin-top: 78px; /* Added margin-top for proper spacing */
+        margin-left: 200px; /* Adjust the left margin to push the chart after the sidebar */
+        padding: 10px;
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 768px) {
+        .cards-container,
+        .table-container,
+        .chart-container {
+          width: 100%; /* Full width for small screens */
+          margin-left: 0; /* Reset margin-left for small screens */
+          padding: 5px; /* Adjusted padding for small screens */
+        }
+
+        .card {
+          width: calc(50% - 16px); /* 2 cards horizontally */
+          margin-left: 5px; /* Added margin-left for small screens */
+        }
+
+        .data-table thead th,
+        .data-table tbody td,
+        .data-table tfoot td {
+          padding: 8px 10px; /* Reduced padding for small screens */
+          font-size: 0.9rem; /* Reduced font size for small screens */
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .card {
+          width: 100%; /* 1 card per row */
+          margin-left: 5px; /* Added margin-left for small screens */
+        }
+
+        .cards-container,
+        .table-container,
+        .chart-container {
+          padding: 5px; /* Further reduced padding for extra small screens */
+        }
+
+        .data-table thead th,
+        .data-table tbody td,
+        .data-table tfoot td {
+          padding: 6px 8px; /* Further reduced padding for extra small screens */
+          font-size: 0.8rem; /* Further reduced font size for extra small screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <div class="logo">
+        <img src="logo.png" alt="Logo" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#" class="btn">Logout</a></li>
+      </ul>
+    </nav>
+
+    <!-- Cards Container -->
+    <div class="cards-container">
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Analytics</div>
+        <div class="card-text">Track your financial performance.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💳</div>
+        <div class="card-title">Accounts</div>
+        <div class="card-text">Manage your bank and mobile money accounts.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <div class="card-title">Budgeting</div>
+        <div class="card-text">Plan and track your expenses.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <div class="card-title">Reports</div>
+        <div class="card-text">Generate detailed financial reports.</div>
+      </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>john@example.com</td>
+            <td>Admin</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jane Smith</td>
+            <td>jane@example.com</td>
+            <td>User</td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">Total Users: 2</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Chart Container -->
+    <div class="chart-container">
+      <h2 style="text-align: center">Monthly Trending Activity</h2>
+      <canvas id="activityChart"></canvas>
+    </div>
+
+    <script>
+      // Chart Configuration
+      const ctx = document.getElementById("activityChart").getContext("2d");
+      const activityChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+          datasets: [
+            {
+              label: "Profit",
+              data: [5000, 6000, 7000, 8000, 6000, 7000, 7500, 8000, 9000, 9500, 10000, 11000],
+              borderColor: "rgba(255, 114, 0, 1)", // Primary color
+              backgroundColor: "rgba(255, 114, 0, 0.2)",
+              fill: true,
+              tension: 0.4,
+              borderWidth: 2,
+              pointRadius: 4,
+            },
+            {
+              label: "Interest",
+              data: [2000, 3000, 4000, 3500, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000],
+              borderColor: "rgba(0, 128, 255, 1)", // Blue for contrast
+              backgroundColor: "rgba(0, 128, 255, 0.2)",
+              fill: true,
+              tension: 0.4,
+              borderWidth: 2,
+              pointRadius: 4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: "#2d2d2d", // Text color
+              },
+            },
+            tooltip: {
+              backgroundColor: "rgba(255, 114, 0, 1)", // Tooltip background color
+            },
+          },
+          scales: {
+            x: {
+              grid: {
+                color: "rgba(255, 255, 255, 0.2)", // Light grid color for x-axis
+              },
+              ticks: {
+                color: "#2d2d2d", // X-axis ticks color
+              },
+            },
+            y: {
+              grid: {
+                color: "rgba(255, 255, 255, 0.2)", // Light grid color for y-axis
+              },
+              ticks: {
+                color: "#2d2d2d", // Y-axis ticks color
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<style>
+/* Budget Form Container */
+.budget-form-container {
+    max-width: 600px;
+    margin: 150px auto;
+
+    padding: 20px;
+    background-color: var(--accent-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.budget-form-container h2 {
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Form Group Styles */
+.budget-form-container .form-group {
+    margin-bottom: 20px;
+}
+
+.budget-form-container .form-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+}
+
+.budget-form-container .form-group i {
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.budget-form-container input[type="number"],
+.budget-form-container input[type="date"],
+.budget-form-container select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.budget-form-container input[type="number"]:focus,
+.budget-form-container input[type="date"]:focus,
+.budget-form-container select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(255, 114, 0, 0.3);
+    outline: none;
+}
+
+.budget-form-container input[type="number"]:hover,
+.budget-form-container input[type="date"]:hover,
+.budget-form-container select:hover {
+    border-color: var(--primary-color);
+}
+
+.budget-form-container select {
+    appearance: none;
+    background-color: var(--accent-color);
+    cursor: pointer;
+}
+
+/* Submit Button */
+.budget-form-container .btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.budget-form-container .btn-submit:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+</style>
+
+<div class="budget-form-container">
+  
+  <h2>Create Budget</h2>
+  <form id="budgetForm">
+    <!-- User ID Dropdown -->
+    <div class="form-group">
+      <label for="user_id"><i class="fas fa-user"></i> User ID</label>
+      <select id="user_id" name="user_id" required>
+        <option value="" disabled selected>Select a user</option>
+        <option value="user1">User 1</option>
+        <option value="user2">User 2</option>
+        <option value="user3">User 3</option>
+      </select>
+    </div>
+
+    <!-- Category ID Dropdown -->
+    <div class="form-group">
+      <label for="category_id"><i class="fas fa-tags"></i> Category ID</label>
+      <select id="category_id" name="category_id" required>
+        <option value="" disabled selected>Select a category</option>
+        <option value="category1">Category 1</option>
+        <option value="category2">Category 2</option>
+        <option value="category3">Category 3</option>
+      </select>
+    </div>
+
+    <!-- Amount Limit -->
+    <div class="form-group">
+      <label for="amount_limit"><i class="fas fa-dollar-sign"></i> Amount Limit</label>
+      <input type="number" id="amount_limit" name="amount_limit" placeholder="Enter amount limit" required>
+    </div>
+
+    <!-- Start Date -->
+    <div class="form-group">
+      <label for="start_date"><i class="fas fa-calendar-alt"></i> Start Date</label>
+      <input type="date" id="start_date" name="start_date" required>
+    </div>
+
+    <!-- End Date -->
+    <div class="form-group">
+      <label for="end_date"><i class="fas fa-calendar-alt"></i> End Date</label>
+      <input type="date" id="end_date" name="end_date" required>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group">
+      <button type="submit" class="btn-submit">Create Budget</button>
+    </div>
+  </form>
+</div>

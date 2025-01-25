@@ -1,15 +1,17 @@
 const express = require('express');
 const { login } = require('../controllers/user/login');
 const { register } = require('../controllers/user/register');
-const userSessions = require('../middlewares/userSessions'); // Importing the middleware
+const { updateProfile } = require('../controllers/user/update');
+const userSessions = require('../middlewares/userSessions');  // Session validation middleware
 const router = express.Router();
 
 // User routes
-router.post('/register', register);         // Register route
-router.post('/login', login);               // Login route
-router.get('/get-session', userSessions);   // Get session route
+router.post('/register', register);  // Register route
+router.post('/login', login);  // Login route
+router.post('/update-profile', userSessions, updateProfile);  // Update profile route with session check
+router.get('/get-user-session', userSessions);  // Get session data route
 
-// Route to clear session (optional)
+// Optional: Clear session route
 router.post('/clear-session', (req, res) => {
     req.session.destroy((err) => {
         if (err) {

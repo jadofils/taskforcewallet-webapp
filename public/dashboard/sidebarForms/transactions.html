@@ -1,0 +1,182 @@
+<style>
+ /* Transaction Form Container */
+.transaction-form-container {
+    max-width: 600px;
+    margin: 150px auto;
+    padding: 20px;
+    background-color: var(--accent-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-form-container h2 {
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Dropdown Container */
+.dropdown-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.dropdown-container .form-group {
+    flex: 1;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+}
+
+.form-group i {
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="number"]:focus,
+.form-group input[type="date"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(255, 114, 0, 0.3);
+    outline: none;
+}
+
+.form-group input[type="number"]:hover,
+.form-group input[type="date"]:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: var(--primary-color);
+}
+
+.form-group select {
+    appearance: none;
+    background-color: var(--accent-color);
+    cursor: pointer;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Submit Button */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+</style>
+
+<div class="transaction-form-container">
+    <h2>Create Transaction</h2>
+    <form id="transactionForm">
+      <!-- Account ID Dropdown -->
+      <div class="form-group">
+        <label for="account_id"><i class="fas fa-credit-card"></i> Account</label>
+        <select id="account_id" name="account_id" required>
+          <option value="" disabled selected>Select an account</option>
+          <option value="account1">Account 1</option>
+          <option value="account2">Account 2</option>
+          <option value="account3">Account 3</option>
+        </select>
+      </div>
+  
+      <div class="dropdown-container">
+        <!-- Category Dropdown -->
+        <div class="form-group">
+          <label for="category_id"><i class="fas fa-tags"></i> Category</label>
+          <select id="category_id" name="category_id" required>
+            <option value="" disabled selected>Select a category</option>
+            <option value="category1">Category 1</option>
+            <option value="category2">Category 2</option>
+            <option value="category3">Category 3</option>
+          </select>
+        </div>
+      
+        <!-- Subcategory Dropdown -->
+        <div class="form-group">
+          <label for="subcategory_id"><i class="fas fa-list"></i> Subcategory</label>
+          <select id="subcategory_id" name="subcategory_id" required>
+            <option value="" disabled selected>Select a subcategory</option>
+            <option value="subcategory1">Subcategory 1</option>
+            <option value="subcategory2">Subcategory 2</option>
+            <option value="subcategory3">Subcategory 3</option>
+          </select>
+        </div>
+      </div>
+      
+  
+      <!-- Amount -->
+      <div class="form-group">
+        <label for="amount"><i class="fas fa-dollar-sign"></i> Amount</label>
+        <input type="number" id="amount" name="amount" placeholder="Enter transaction amount" required>
+      </div>
+  
+      <!-- Transaction Type Dropdown -->
+      <div class="form-group">
+        <label for="transaction_type"><i class="fas fa-exchange-alt"></i> Transaction Type</label>
+        <select id="transaction_type" name="transaction_type" required>
+          <option value="" disabled selected>Select type</option>
+          <option value="Income">Income</option>
+          <option value="Expense">Expense</option>
+        </select>
+      </div>
+  
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description"><i class="fas fa-pen"></i> Description</label>
+        <textarea id="description" name="description" placeholder="Enter transaction description"></textarea>
+      </div>
+  
+      <!-- Date -->
+      <div class="form-group">
+        <label for="date"><i class="fas fa-calendar-alt"></i> Date</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="form-group">
+        <button type="submit" class="btn-submit">Create Transaction</button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,125 @@
+<div class="report-container">
+    <h2>Generate Report</h2>
+    <form id="reportForm">
+        <!-- Dropdown for Report Type -->
+        <div class="form-group">
+            <label for="reportType"><i class="fas fa-file-alt"></i> Report Type</label>
+            <select id="reportType" name="reportType" required>
+                <option value="" disabled selected>Select Report Type</option>
+                <option value="user">User Report</option>
+                <option value="account">Account Report</option>
+                <option value="category">Category Report</option>
+                <option value="subcategory">Subcategory Report</option>
+                <option value="transaction">Transaction Report</option>
+                <option value="budget">Budget Report</option>
+            </select>
+        </div>
+
+        <!-- Dropdown for Report Format -->
+        <div class="form-group">
+            <label for="reportFormat"><i class="fas fa-file-download"></i> Report Format</label>
+            <select id="reportFormat" name="reportFormat" required>
+                <option value="" disabled selected>Select Format</option>
+                <option value="xls">Excel (.xls)</option>
+                <option value="pdf">PDF (.pdf)</option>
+                <option value="csv">CSV (.csv)</option>
+                <option value="json">JSON (.json)</option>
+            </select>
+        </div>
+
+        <!-- Dropdown for Time Period -->
+        <div class="form-group">
+            <label for="timePeriod"><i class="fas fa-calendar-alt"></i> Time Period</label>
+            <select id="timePeriod" name="timePeriod" required>
+                <option value="" disabled selected>Select Time Period</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <button type="submit" class="btn-submit">Generate Report</button>
+        </div>
+    </form>
+</div>
+<script src="../../js/report.js"></script>
+<style>
+    /* Report Container */
+.report-container {
+    max-width: 600px;
+    margin: 150px auto;
+    padding: 20px;
+    background-color: var(--accent-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.report-container h2 {
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+}
+
+.form-group i {
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--text-dark);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(255, 114, 0, 0.3);
+    outline: none;
+}
+
+.form-group select:hover {
+    border-color: var(--primary-color);
+}
+
+/* Submit Button */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+</style>

@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 // Allow CORS
 app.use(cors({
-    origin: 'https://taskforcewallet-webapp.onrender.com',  // Adjust this URL if your frontend is hosted elsewhere
+    origin:/*'http://localhost:5000'*/ 'https://taskforcewallet-webapp.onrender.com',  // Adjust this URL if your frontend is hosted elsewhere
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
@@ -61,7 +61,7 @@ app.use((err, req, res, next) => {
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(`Server running at: https://taskforcewallet-webapp.onrender.com`);
-    //  console.log(`Server running at http://localhost:${PORT}`);
+   console.log(`Server running at: https://taskforcewallet-webapp.onrender.com`);
+      //console.log(`Server running at http://localhost:${PORT}`);
    // console.log(`Server running at http://localhost:${PORT}`);
 });

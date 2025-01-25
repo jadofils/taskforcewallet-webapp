@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+       /* User Profile Container */
+.container {
+    max-width: 800px;
+    margin: 150px auto;
+    padding: 20px;
+    background-color: var(--accent-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.container p {
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Profile Section */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Profile Image Wrapper */
+.profile-image-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--primary-color);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-image-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-icon:hover {
+    background-color: darken(var(--primary-color), 10%);
+}
+
+/* Profile Info */
+.profile-info {
+    flex: 1;
+}
+
+.profile-info p {
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.profile-info strong {
+    color: var(--secondary-color);
+}
+
+/* Buttons */
+.update-button,
+.cancel-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.update-button {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+.update-button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.cancel-button {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+}
+
+.cancel-button:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>User Profile</h2>
+        <p>Welcome to the user section. Here you can manage your profile and view user data.</p>
+
+        <div class="profile-section">
+            <div class="profile-image-wrapper">
+                <img src="../images/default.jpg" alt="User Profile Image" class="profile-image" id="profileImage">
+                <div class="edit-icon" id="editIcon" onclick="editProfilePicture()">✎</div>
+            </div>
+            <div class="profile-info">
+                <p><strong>Name:</strong> <span id="userName">John Doe</span></p>
+                <p><strong>Email:</strong> <span id="userEmail">johndoe@example.com</span></p>
+                <p><strong>Password:</strong> <span id="userPassword">********</span></p>
+                <button class="update-button" onclick="updateProfile()">Update Profile</button>
+                <button class="cancel-button" onclick="cancelUpdate()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Edit Profile Picture Functionality
+        function editProfilePicture() {
+            const newProfileImage = prompt('Enter the URL of the new profile image:');
+            if (newProfileImage) {
+                document.getElementById('profileImage').src = newProfileImage;
+            }
+        }
+
+        // Update Profile Functionality (Placeholder)
+        function updateProfile() {
+            alert('Profile updated successfully!');
+            // Add backend update functionality here.
+        }
+
+        // Cancel Update Functionality
+        function cancelUpdate() {
+            alert('Profile update canceled');
+            // You can add functionality to reset fields or revert to previous data.
+        }
+    </script>
+
+</body>
+</html>

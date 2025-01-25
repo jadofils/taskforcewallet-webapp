@@ -1,20 +1,25 @@
 const mongoose = require('mongoose');
 
-// User Schema
 const userSchema = new mongoose.Schema({
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     email: { type: String, unique: true, required: true },
     username: { type: String, unique: true, required: true },
-
     password: { type: String, required: true },
+    profile: { 
+        type: String, // Store the file path or URL to the profile image
+        default: null // Optional, so it can be null
+    },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
 });
+
+// Middleware to update the `updated_at` field before saving
 userSchema.pre('save', function (next) {
     this.updated_at = Date.now();
     next();
 });
+
 const User = mongoose.model('User', userSchema);
 
 // Account Schema

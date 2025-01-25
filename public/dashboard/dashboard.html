@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/user.js" defer></script>
+   
 
 
     <link
@@ -36,12 +36,7 @@
         color: #ff7200;
       }
 
-      /*graphs */
-      .container {
-        width: 100%;
-        margin-left: 250px;
-        overflow-x: auto;
-      }
+     
 
       canvas {
         width: 140%; /* Makes the canvas 120% of the container's width */
@@ -71,7 +66,7 @@
     <!-- make the vertical sidebar with icons -->
     <div class="sidebar">
       <div class="sidebar-header">
-        <h3>App Name</h3>
+        <h3>Wallet Web App</h3>
         <!-- sessions exported here -->
         <div id="session-info">
           <p id="username"></p>
@@ -86,33 +81,41 @@
           <i class="fas fa-tachometer-alt"></i> Dashboard
       </a>        <hr />
         <a href="#" class="nav-link" id="user"><i class="fas fa-user"></i> User</a>
+       
         <hr class="sidebar-hr" />
-        <a href="#" class="nav-link"
-          ><i class="fas fa-user-circle" id="profile"></i> Profile</a
+        <a href="#" class="nav-link"  id="account"
+          ><i class="fas fa-credit-card"></i> Accounts</a
         >
-        <hr class="sidebar-hr" />
-        <a href="#" class="nav-link"
-          ><i class="fas fa-credit-card" id="accounts"></i> Accounts</a
-        >
+
         <hr class="sidebar-hr" />
         <a href="#" class="nav-link" id="budget"><i class="fas fa-wallet"></i> Budgets</a>
         <hr class="sidebar-hr" />
         <a href="#" class="nav-link" id="category"><i class="fas fa-th-list"></i> Category</a>
         <hr class="sidebar-hr" />
-        <a href="#" class="nav-link"
-          ><i class="fas fa-hand-holding-usd" id="withdraw"></i> Withdraw</a
+
+        <a href="#" class="nav-link" id="transaction">
+          <i class="fas fa-money-check-alt"></i> Transactions
+        </a>
+        <hr class="sidebar-hr" />
+        
+        <a href="#" class="nav-link" id="withdraw"
+          ><i class="fas fa-hand-holding-usd" ></i> Withdraw</a
         >
         <hr class="sidebar-hr" />
-        <a href="#" class="nav-link"
-          ><i class="fas fa-balance-scale" id="balance"></i> Balance</a
+        <a href="#" class="nav-link" id="balance"
+          ><i class="fas fa-balance-scale" ></i> Balance</a
         >
         <hr class="sidebar-hr" />
         <a href="#" class="nav-link" id="loan"><i class="fas fa-credit-card"></i> Loan</a>
         <hr class="sidebar-hr" />
         <a href="#" class="nav-link" id="interest"><i class="fas fa-percent"></i> Interest</a>
         <hr class="sidebar-hr" />
-        <a href="#" class="nav-link"
-          ><i class="fas fa-chart-line" id="report"></i> Report</a
+        <a href="#" class="nav-link"  id="report"
+          ><i class="fas fa-chart-line"></i> Report</a
+        >
+        <hr class="sidebar-hr" />
+        <a href="#" class="nav-link" id="forgetpassword"
+          ><i class="fas fa-user-circle" ></i> forgetpassword</a
         >
         <hr class="sidebar-hr" />
         <a href="#" class="nav-link" id="settings"><i class="fas fa-cogs"></i> Settings</a>
@@ -120,6 +123,8 @@
         <a href="#" class="nav-link"
           ><i class="fas fa-sign-out-alt" id="logout"></i> Logout</a
         >
+       
+
       </div>
     </div>
 
@@ -163,8 +168,7 @@
     </div>
 
 <!-- don't remove this is for rendering the nav links and sidebar liks -->
-    <div id="content" style="margin-top: 20px;margin-left: 250px; border: 1px solid #ccc;
-     padding: 20px; border-radius: 5px; width: 100%;">
+    <div id="content">
   </div>
 
 
@@ -270,129 +274,14 @@
 
     <div class="container" id="canvas-container">
       <h2 style="text-align: center">Monthly Trending Activity</h2>
-      <canvas id="activityChart"></canvas>
+      <div class="chart-wrapper">
+        <canvas id="activityChart"></canvas>
+      </div>
     </div>
 
-    <script>
-      // Get CSS variable values
-      const rootStyles = getComputedStyle(document.documentElement);
-      const primaryColor = rootStyles
-        .getPropertyValue("--primary-color")
-        .trim();
-      const accentColor = rootStyles.getPropertyValue("--accent-color").trim();
-      const secondaryColor = rootStyles
-        .getPropertyValue("--secondary-color")
-        .trim();
+   
 
-      const ctx = document.getElementById("activityChart").getContext("2d");
-
-      const activityChart = new Chart(ctx, {
-        type: "line", // You can change to 'bar' for a bar chart
-        data: {
-          labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
-          ], // Months
-          datasets: [
-            {
-              label: "Profit",
-              data: [
-                5000, 6000, 7000, 8000, 6000, 7000, 7500, 8000, 9000, 9500,
-                10000, 11000,
-              ],
-              borderColor: primaryColor, // Primary color (Vibrant orange)
-              backgroundColor: primaryColor + "80", // 50% opacity
-              fill: true,
-              tension: 0.4,
-              borderWidth: 2,
-              pointRadius: 4,
-            },
-            {
-              label: "Interest",
-              data: [
-                2000, 3000, 4000, 3500, 4500, 5000, 5500, 6000, 6500, 7000,
-                7500, 8000,
-              ],
-              borderColor: "rgba(0, 128, 255, 1)", // A blue for contrast
-              backgroundColor: "rgba(0, 128, 255, 0.2)",
-              fill: true,
-              tension: 0.4,
-              borderWidth: 2,
-              pointRadius: 4,
-            },
-            {
-              label: "Budget",
-              data: [
-                4000, 4500, 5000, 6000, 7000, 7500, 8000, 8500, 9000, 9500,
-                10000, 11000,
-              ],
-              borderColor: "rgba(0, 255, 0, 1)", // Green for Budget
-              backgroundColor: "rgba(0, 255, 0, 0.2)",
-              fill: true,
-              tension: 0.4,
-              borderWidth: 2,
-              pointRadius: 4,
-            },
-            {
-              label: "Loss",
-              data: [
-                -2000, -1000, -500, -200, -100, 0, 100, 200, 400, 800, 1200,
-                1500,
-              ],
-              borderColor: "rgba(255, 0, 0, 1)", // Red for Loss
-              backgroundColor: "rgba(255, 0, 0, 0.2)",
-              fill: true,
-              tension: 0.4,
-              borderWidth: 2,
-              pointRadius: 4,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              labels: {
-                color: accentColor, // Change legend text color to white
-              },
-            },
-            tooltip: {
-              backgroundColor: primaryColor, // Tooltip background color
-            },
-          },
-          scales: {
-            x: {
-              grid: {
-                color: "rgba(255, 255, 255, 0.2)", // Light grid color for x-axis
-              },
-              ticks: {
-                color: accentColor, // X-axis ticks color
-              },
-            },
-            y: {
-              grid: {
-                color: "rgba(255, 255, 255, 0.2)", // Light grid color for y-axis
-              },
-              ticks: {
-                color: accentColor, // Y-axis ticks color
-              },
-            },
-          },
-        },
-      });
-    </script>
-
-    <script src="../js/sidebar.js"></script>
+    <script src="../js/sidebar.js" defer></script>
     <script src="../js/charts.js"></script>
    
   </body>

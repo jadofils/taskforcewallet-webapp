@@ -18,7 +18,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     submitButton.style.backgroundColor = '#ff7200';
 
     const remote = "https://taskforcewallet-webapp.onrender.com";
-    const local = "https://taskforcewallet-webapp.onrender.com";
+    const local = "http://localhost:5000";
     const response = await fetch(`${remote}/api/users/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

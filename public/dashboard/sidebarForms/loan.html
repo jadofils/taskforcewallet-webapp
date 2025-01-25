@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Forms</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Root Variables */
+    :root {
+      --primary-color: #ff7200;    /* Vibrant orange */
+      --secondary-color: #1e3d59;  /* Rich navy blue */
+      --accent-color: #ffffff;     /* Clean white */
+      --text-dark: #2d2d2d;       /* Soft black for text */
+      --success-color: #28a745;    /* Green for success */
+      --failed-color: #dc3545;     /* Red for failure */
+    }
+
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Forms Container */
+    .forms-container {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+      margin: 150px auto;
+      background-color: var(--accent-color);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Loan Form Styling */
+    .loan-form {
+      flex: 1;
+      padding: 20px;
+      background-color: var(--accent-color);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .loan-form h2 {
+      color: var(--secondary-color);
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    /* Form Group Styles */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      color: var(--secondary-color);
+      margin-bottom: 8px;
+    }
+
+    .form-group i {
+      color: var(--primary-color);
+      font-size: 18px;
+    }
+
+    .form-group input[type="number"],
+    .form-group input[type="date"],
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid var(--secondary-color);
+      border-radius: 5px;
+      font-size: 16px;
+      color: var(--text-dark);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-group input[type="number"]:focus,
+    .form-group input[type="date"]:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 8px rgba(255, 114, 0, 0.3);
+      outline: none;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary-color);
+      color: var(--accent-color);
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .forms-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="forms-container">
+    <!-- Loan Request Form -->
+    <div class="loan-form">
+      <h2>Loan Request</h2>
+      <form id="loanRequestForm">
+        <!-- Account ID Dropdown -->
+        <div class="form-group">
+          <label for="account_id"><i class="fas fa-credit-card"></i> Account</label>
+          <select id="account_id" name="account_id" required>
+            <option value="" disabled selected>Select an account</option>
+            <option value="account1">Account 1</option>
+            <option value="account2">Account 2</option>
+            <option value="account3">Account 3</option>
+          </select>
+        </div>
+
+        <!-- Loan Amount -->
+        <div class="form-group">
+          <label for="loan_amount"><i class="fas fa-dollar-sign"></i> Loan Amount</label>
+          <input type="number" id="loan_amount" name="loan_amount" placeholder="Enter loan amount" required>
+        </div>
+
+        <!-- Loan Purpose -->
+        <div class="form-group">
+          <label for="loan_purpose"><i class="fas fa-pen"></i> Loan Purpose</label>
+          <textarea id="loan_purpose" name="loan_purpose" placeholder="Enter loan purpose" required></textarea>
+        </div>
+
+        <!-- Loan Term (Months) -->
+        <div class="form-group">
+          <label for="loan_term"><i class="fas fa-calendar-alt"></i> Loan Term (Months)</label>
+          <input type="number" id="loan_term" name="loan_term" placeholder="Enter loan term in months" required>
+        </div>
+
+        <!-- Interest Rate -->
+        <div class="form-group">
+          <label for="interest_rate"><i class="fas fa-percentage"></i> Interest Rate</label>
+          <input type="number" id="interest_rate" name="interest_rate" placeholder="Enter interest rate" step="0.01" required>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button type="submit" class="btn-submit">Request Loan</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Pay Loan Form -->
+    <div class="loan-form">
+      <h2>Pay Loan</h2>
+      <form id="payLoanForm">
+        <!-- Account ID Dropdown -->
+        <div class="form-group">
+          <label for="account_id"><i class="fas fa-credit-card"></i> Account</label>
+          <select id="account_id" name="account_id" required>
+            <option value="" disabled selected>Select an account</option>
+            <option value="account1">Account 1</option>
+            <option value="account2">Account 2</option>
+            <option value="account3">Account 3</option>
+          </select>
+        </div>
+
+        <!-- Loan ID Dropdown -->
+        <div class="form-group">
+          <label for="loan_id"><i class="fas fa-list"></i> Loan</label>
+          <select id="loan_id" name="loan_id" required>
+            <option value="" disabled selected>Select a loan</option>
+            <option value="loan1">Loan 1</option>
+            <option value="loan2">Loan 2</option>
+            <option value="loan3">Loan 3</option>
+          </select>
+        </div>
+
+
+        
+    <!-- Payment Frequency Dropdown -->
+    <div class="form-group">
+        <label for="payment_frequency"><i class="fas fa-calendar"></i> Payment Frequency</label>
+        <select id="payment_frequency" name="payment_frequency" required>
+          <option value="" disabled selected>Select payment frequency</option>
+          <option value="installment">Installment</option>
+          <option value="half">Half-Yearly</option>
+          <option value="quarterly">Quarterly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+      </div>
+
+        <!-- Payment Amount -->
+        <div class="form-group">
+          <label for="payment_amount"><i class="fas fa-dollar-sign"></i> Payment Amount</label>
+          <input type="number" id="payment_amount" name="payment_amount" placeholder="amount will be gotten from backend" required>
+        </div>
+
+        <!-- Payment Date -->
+        <div class="form-group">
+          <label for="payment_date"><i class="fas fa-calendar-alt"></i> Payment Date</label>
+          <input type="date" id="payment_date" name="payment_date" required>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button type="submit" class="btn-submit">Pay Loan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Handle Loan Request Form Submission
+    document.getElementById("loanRequestForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      console.log("Loan Request Data:", data);
+      alert("Loan request submitted successfully!");
+      this.reset();
+    });
+
+    // Handle Pay Loan Form Submission
+    document.getElementById("payLoanForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      console.log("Pay Loan Data:", data);
+      alert("Loan payment submitted successfully!");
+      this.reset();
+    });
+  </script>
+</body>
+</html>
